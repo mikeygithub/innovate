@@ -1,0 +1,360 @@
+@charset "UTF-8";
+/**
+ * 主页面
+ * @authors Your Name (you@example.org)
+ * @date    2019-09-02 15:23:02
+ * @version $Id$
+ */
+body{background-color:#f6f6f8;}
+ /**顶部消息通知**/
+.app-outbox{
+    margin-top: 50px;
+    height: 120px;
+    background: #5dd5c8;
+    position: relative;
+    z-index: 1;
+    padding-top: 0;
+}
+.app-outbox img,.app-mright img{
+    float: left;
+    height: 118px;
+    margin: 2px 35px 0 0;
+}
+.app-mright img{margin-top:25px;float: right;width: 255px;height: 26px;}
+.btn {
+    display: inline-block;
+    min-width: 112px;
+    box-sizing: content-box;
+    height: 36px;
+    line-height: 36px;
+    border: 1px #5dd5c8 solid;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    background: #5dd5c8;
+    text-align: center;
+    cursor: pointer;
+}
+.btn-to-upload {
+    font-size: 14px;
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    height: 34px;
+    line-height: 34px;
+    border-radius: 2px;
+    color: #5dd5c8;
+    background: #fff;
+}
+.btn-upload-jl{
+    margin-top: 70px;
+    transition: .5s;
+}
+.btn-upload-jl:hover{background-color: #eee;}
+/**顶部消息通知**/
+
+
+/**主页搜索**/
+.page-full-screen{
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+.app-sbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 0 9px 2px #999;
+    height: 100px;
+    z-index: 9;
+}
+.app-sform{height: 80px;padding-top: 20px;}
+.app-form{
+    display: block;
+    margin-left:240px;
+    margin-right:140px;
+    height: 50px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.13);
+    transition: .5s;
+}
+.app-form:hover{
+    border-color: #00d7c6;
+}
+
+
+
+
+/*.app-form form{height: 100%;}*/
+.app-seach{
+    position: absolute;
+    top: 0;
+    right: -140px;
+    width: 145px;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    background: #55cbc4;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    min-width: 0;
+    background-position: 34px -138px;
+    min-width: 0;
+    border: 1px solid #00d7c6;
+}
+.app-seach:hover{background-color: #6adbcf;color: #fff;}
+.app-ftype{
+    width: 120px;
+    cursor: pointer;
+    float: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-color: #fff;
+}
+.app-ftxt{
+    position: relative;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+}
+.app-ftxt:before{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-top-color: #666;
+}
+.app-ftbox{top: 15px;z-index: 9;}
+.app-finput{
+    text-indent: 1em;
+    display: block;
+    outline: none;
+    height: 30px;
+    width: 895px;
+    border:none;
+    font-size: 16px;
+    padding: 10px 19px;
+}
+/**主页搜索**/
+/** 热门词汇 **/
+.app-index-seach{height: auto;}
+.app-index-seach .app-form{background-color:#fff;margin-left: 0!important;}
+.app-hot-produ{padding: 9px 0;}
+.app-hot-produ .text{font-weight: 400;float: left;font-size: 13px;color: #9fa3b0;}
+.app-hot-produbox{margin-left:80px;height: 26px;}
+.app-hot-a{margin: 0 10px;color: #00c2b3;font-size: 14px;line-height: 26px;transition: 0.5s;}
+.app-hot-a:hover{color: #1ae2d3;}
+/** 热门词汇 **/
+
+
+/** 快捷菜单 **/
+.app-menu-left{width: 268px;background-color:#fff;height: 550px;/*overflow: hidden;*/}
+.app-menu-item{padding: 8px 0 9px 20px;border-bottom: 1px solid #eee;line-height: 26px;cursor: pointer;position: relative;}
+.app-menu-item:hover{background-color: #5cc9b4;}
+.app-menu-item:hover p a,.app-menu-item:hover p b{color: #fff;}
+.app-menu-item b{color: #414a60;font-size: 15px;}
+.app-menu-item a{color: #61687c;font-size: 13px;display: inline-block;line-height: 28px;margin-left: 16px;}
+.app-tright{float: right;background-position: -25px 0;margin-top: 8px;height:15px;vertical-align: middle;width: 12px;margin-right: 10px;display: inline-block;/*background-image: url(../img/icons.png);*/background-repeat: no-repeat;}
+.app-menu-item:hover .app-menubox{display: block;}
+.app-menubox{display: none;position: absolute;top: 0;left: 265px;height: auto;width:690px;background-color: #fff;z-index: 3;box-shadow: 0 0 15px 0 #c7c6c6; padding: 20px;border-radius: 3px;}
+.app-menubox b{display: block;height: 26px;margin-bottom:15px;}
+.app-menub-item{}
+.app-menub-l{width: 104px;color: #8d92a1;font-size: 13px;padding-top: 2px;font-weight: 400;}
+.app-menub-r{margin-left:120px;border-bottom: 1px solid #eee;padding-bottom: 10px;}
+.app-menub-item .app-menub-r > a:hover{color: #5dd5c8;}
+.app-menu-right{margin-left:300px;height: auto;height: 550px;overflow: hidden;}
+
+/** 右边 **/
+.app-menu-right .app-menu-rleft{width: 620px;}
+.app-menu-rleft li{margin-top: 5px;}
+.app-menu-rleft li:nth-child(1){margin-top: 0;}
+.app-menu-rleft li img{display: block;width: 100%;}
+.app-menu-right .app-menu-rright{margin-left: 10px;}
+/** 快捷菜单 **/
+
+/** 招聘信息 **/
+.app-zp h3,.app-qy h3{height: 45px;}
+.app-zp h3 span,.app-qy h3 span{
+    float: left;
+    display: inline-block;
+    margin-right: 40px;
+    line-height: 45px;
+    color: #8d92a1;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+.app-zp h3 span:hover,.app-qy h3 span:hover{color: #00c2b3;}
+.app-zp .cur,.app-qy .cur{color: #00c2b3;}
+
+.app-zp-box,.app-qy-box{/*border:1px solid red;*/margin-top: 10px;}
+.app-zp-box li {
+    height: 130px;
+    width: 384px;
+    float: left;
+    margin: 0 16px 16px 0;
+    background: #fff;
+    border-radius: 5px;
+}
+.app-zp-box li:hover,.app-qy-box ul li:hover{box-shadow: 0 0 15px 0 #ddd;}
+.app-zp-box li .sub-li {
+    display: block;
+    height: 130px;
+    width: 384px;
+}
+.app-zp-box li a{display: block;}
+.app-zp-box li a.job-info {
+    height: 71px;
+    padding-top: 10px;
+}
+.app-zp-box  li p {
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #61687c;
+    width: 244px;
+    padding-right: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+.app-zp-box li .salary {
+    color: #fc6c38;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.app-zp-box li a.job-info p.job-text {
+    font-size: 12px;
+    color: #61687c;
+    border-bottom: dashed 1px #e3e7ed;
+    width: 344px;
+    padding-right: 0;
+    line-height: 28px;
+}
+.app-zp-box li a.job-info p:hover{color:#4fc2c2;}
+.vline {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    vertical-align: middle;
+    background: #e0e0e0;
+    margin: 0 10px;
+}
+.app-zp-box a.user-info {
+    padding: 7px 0;
+}
+.app-zp-box .user-info p {
+    font-size: 14px;
+    width: 344px;
+    padding-right: 0;
+}
+.app-zp-box .user-info img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.user-info:hover{background-color: #f8f8f8;}
+
+.common-tab-more {
+    text-align: center;
+    margin-top: 20px;
+}
+.common-tab-more .btn {
+    width: 382px;
+    font-size: 15px;
+    height: 32px;
+    line-height: 32px;
+    background: transparent;
+}
+.btn-outline {
+    color: #5dd5c8;
+}
+.common-tab-more .btn-outline:hover {
+    background: #5dd5c8;
+    color: #fff;
+}
+/** 招聘信息 **/
+
+/** 企业信息 **/
+.app-qy-box {height: 468px;overflow: hidden;}
+.app-qy-box ul li {
+    height: 140px;
+    width: 284px;
+    float: left;
+    cursor: pointer;
+    margin: 8px;
+    background: #fff;
+    border-radius: 5px;
+}
+.app-qy-box li .sub-li {
+    display: block;
+    height: 140px;
+    width: 284px;
+}
+.app-qy-box li .company-info {
+    height: 77px;
+    margin: 0 20px;
+    padding-top: 20px;
+    border-bottom: dashed 1px #ededed;
+}
+.app-qy-box li a {
+    color: #414a60;
+    display: block;
+}
+.app-qy-box li .company-info img {
+    height: 55px;
+    width: 55px;
+    float: left;
+    border-radius: 10px;
+    border: solid 1px #f2f5fa;
+}
+.app-qy-box  li .conpany-text {
+    margin-left: 65px;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.app-qy-box li .conpany-text h4 {
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.app-qy-box li .conpany-text p {
+    height: 40px;
+    line-height: 41px;
+    color: #898e9d;
+    font-size: 12px;
+    display: inline-block;
+    white-space: nowrap;
+}
+.app-qy-box li .about-info {
+    color: #8d92a1;
+    height: 42px;
+    line-height: 42px;
+    font-size: 12px;
+}
+.app-qy-box li .about-info p {width: 240px;margin: 0 auto;}
+.app-qy-box li .pull-right {text-align: right;float: right;}
+.text-blue {color: #00c2b3;}
+.conpany-text h4:hover{color:#4fc2c2;}
+.about-info:hover{background-color: #f8f8f8;}
+/** 企业信息 **/

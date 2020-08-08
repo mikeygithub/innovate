@@ -1,0 +1,26 @@
+version: '2'
+services:
+  innovate-admin-mysql:
+    image: mysql:5.7
+    ports:
+      - 0.0.0.0:3306:3306
+    environment:
+      - MYSQL_DATABASE=innovate_admin
+      - MYSQL_USER=innovate_admin
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - /root/innovate-admin/mysql/data:/var/lib/mysql
+    privileged: true
+    restart: always
+
+  innovate-admin:
+    image: mikeyboom/innovate-admin:latest
+    privileged: true
+    ports:
+      - 8080:8080
+    volumes:
+      - /root/mikey/MIKEY:/home/mikey/MIKEY
+    environment:
+      - spring.profiles.active=prod
+    restart: always
