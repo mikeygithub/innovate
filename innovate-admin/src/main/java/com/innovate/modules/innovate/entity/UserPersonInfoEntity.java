@@ -24,6 +24,7 @@ public class UserPersonInfoEntity implements Serializable {
     private Long perSex;
     private String perPost;
     private String perPoliticsType;
+    //学号
     private String perStuNo;
     private String perClassNo;
     private String perCormNo;

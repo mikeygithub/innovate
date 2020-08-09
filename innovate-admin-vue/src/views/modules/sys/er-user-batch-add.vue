@@ -170,7 +170,7 @@
         if (files.length <= 0) {
           return false
         } else if (!/\.(xls|xlsx)$/.test(files[0].name.toLowerCase())) {
-          this.$Message.error('上传格式不正确，请上传xls或者xlsx格式')
+          this.$message.error('上传格式不正确，请上传xls或者xlsx格式')
           return false
         }
 

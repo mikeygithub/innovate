@@ -33,4 +33,11 @@ public interface UserPerInfoService extends IService<UserPersonInfoEntity> {
      */
     Long queryUserPerIdByUserId(Long userId);
 
+    /**
+     * 通过用户ｉｄ查询学生
+     * @param userId
+     * @return
+     */
+    UserPersonInfoEntity queryUserByUserId(Long userId);
+
 }

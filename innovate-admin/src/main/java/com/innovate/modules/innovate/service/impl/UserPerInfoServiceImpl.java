@@ -77,4 +77,19 @@ public class UserPerInfoServiceImpl extends ServiceImpl<UserPersonInfoDao, UserP
     public Long queryUserPerIdByUserId(Long userId) {
         return baseMapper.queryUserPerIdByUserId(userId);
     }
+
+    /**
+     * 通过用户id查询学生
+     * @param userId
+     * @return
+     */
+    @Override
+    public UserPersonInfoEntity queryUserByUserId(Long userId) {
+
+        EntityWrapper<UserPersonInfoEntity> userPersonInfoEntityEntityWrapper = new EntityWrapper<>();
+
+        userPersonInfoEntityEntityWrapper.eq("user_id",userId);
+
+        return super.selectOne(userPersonInfoEntityEntityWrapper);
+    }
 }
