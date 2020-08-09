@@ -1,0 +1,31 @@
+language: node_js
+node_js:
+- 10.16.1
+services:
+- docker
+sudo: required
+branches:
+  only:
+  - master
+install:
+- npm install
+script:
+- npm run build
+- docker build . -t "mikeyboom/innovate-admin-vue:latest"
+addons:
+  ssh_known_hosts:
+  - $SERVER_IP
+after_success:
+  - docker login -u=$DOCKER_NAME -p="$DOKCER_PWD"
+  - docker push mikeyboom/innovate-admin-vue:latest
+  - chmod 600 ~/.ssh/id_rsa
+  - rsync -az --delete ./docker-compose.yml root@$SERVER_IP:innovate-admin-vue/
+  - ssh -o "StrictHostKeyChecking no" -i id_rsa root@$SERVER_IP "cd innovate-admin-vue/;docker-compose
+    -f docker-compose.yml pull;docker-compose -f docker-compose.yml up -d;exit"
+before_install:
+- openssl aes-256-cbc -K $encrypted_1687bb340939_key -iv $encrypted_1687bb340939_iv  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host $SERVER_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+
+
