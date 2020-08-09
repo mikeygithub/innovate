@@ -15,7 +15,7 @@ matrix:
       ssh_known_hosts:
       - "$SERVER_IP"
     after_success:
-    - docker login -u=$DOCKER_NAME -p="$DOKCER_PWD"
+    - docker login -u=$DOCKER_NAME -p="$DOCKER_PWD"
     - docker push mikeyboom/innovate-admin-vue:latest
     - chmod 600 ~/.ssh/id_rsa
     - rsync -az --delete ./docker-compose.yml root@$SERVER_IP:innovate-admin-vue/
@@ -44,7 +44,7 @@ matrix:
     - echo -e "Host $SERVER_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - cd innovate-admin
     after_success:
-    - docker login -u=$DOCKER_NAME -p="$DOKCER_PWD"
+    - docker login -u=$DOCKER_NAME -p="$DOCKER_PWD"
     - docker push mikeyboom/innovate-admin:latest
     - chmod 600 ~/.ssh/id_rsa
     - rsync -az --delete ./docker-compose.yml root@$SERVER_IP:innovate-admin/

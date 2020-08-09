@@ -8,7 +8,9 @@
 
 #### 安装教程
 
-1. 安装依赖：`npm install`
+1. 安装依赖：
+  > `npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver`
+  > `npm install`
 2. 开发运行：`npm run dev`
 3. 构建编译：`npm run build`
 3. 打包镜像：`docker build -t mikeyboom/innovate-admin-vue:v1.3.2 .`
