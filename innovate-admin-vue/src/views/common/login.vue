@@ -283,9 +283,9 @@
                 <el-col :span="12">
                   <el-button class="login-btn-submit" type="primary" @click="dataFormSubmit()">登录</el-button>
                 </el-col>
-                <el-col :span="12">
-                  <el-button class="login-btn-submit" type="primary" @click="registerSubmit()">注册</el-button>
-                </el-col>
+<!--                <el-col :span="12">-->
+<!--                  <el-button class="login-btn-submit" type="primary" @click="registerSubmit()">注册</el-button>-->
+<!--                </el-col>-->
               </el-row>
             </el-form-item>
           </el-form>

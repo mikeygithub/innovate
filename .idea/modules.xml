@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/innovate-admin-vue/innovate-admin-vue.iml" filepath="$PROJECT_DIR$/innovate-admin-vue/innovate-admin-vue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/innovate-doc/innovate-doc.iml" filepath="$PROJECT_DIR$/innovate-doc/innovate-doc.iml" />
     </modules>
   </component>
 </project>
