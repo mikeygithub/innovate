@@ -1,5 +1,6 @@
 package com.innovate.modules.declare.controller;
 
+import com.innovate.common.utils.OSSUtils;
 import com.innovate.common.utils.R;
 import com.innovate.modules.declare.entity.DeclareAttachEntity;
 import com.innovate.modules.declare.service.DeclareAttachService;
@@ -19,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,50 +48,25 @@ public class DeclareAttachController extends AbstractController {
     @PostMapping(value = "/upload")
     @RequiresPermissions("innovate:declare:save")
     public Object uploadFile(@RequestParam("file") List<MultipartFile> files, HttpServletRequest request) {
+
         String declareName = request.getParameter("declareName");
 
-        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + declareName + "/"+ RandomUtils.getRandomNums()+"/";
+//        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + declareName + "/"+ RandomUtils.getRandomNums() + "/";
+        String UPLOAD_FILES_PATH = "declare"+File.separator + Calendar.getInstance().get(Calendar.YEAR) + File.separator+declareName + "/"+ RandomUtils.getRandomNums() + "/";
         if (Objects.isNull(files) || files.isEmpty()) {
             return R.error("文件为空，请重新上传");
         }
         DeclareAttachEntity declareAttachEntity = null;
-//        for(MultipartFile file : files){
-//            String fileName = file.getOriginalFilename();
-//            int size = (int) file.getSize();
-//            if(file.isEmpty()||Objects.isNull(files)){
-//                return "false";
-//            }else{
-//                File dest = new File(UPLOAD_FILES_PATH  + fileName);
-//                UPLOAD_FILES_PATH += fileName;
-//                if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
-//                    dest.getParentFile().mkdirs();
-//                }
-//                try {
-//                    file.transferTo(dest);
-//                }catch (Exception e) {
-//                    e.printStackTrace();
-//                    return R.error("文件上传异常");
-//                }
-//            }
         for(MultipartFile file : files){
             String fileName = file.getOriginalFilename();
-            String result = null;
-            try {
-                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (!result.equals("true")) {
-                R.error(result);
-            }
+            OSSUtils.upload2OSS(file,UPLOAD_FILES_PATH+fileName);
             UPLOAD_FILES_PATH += fileName;
             declareAttachEntity = new DeclareAttachEntity();
             declareAttachEntity.setAttachPath(UPLOAD_FILES_PATH);
             declareAttachEntity.setAttachName(fileName);
             declareAttachEntity.setIsDel(0L);
         }
-        return R.ok("文件上传成功")
-                .put("declareAttachEntity", declareAttachEntity);
+        return R.ok("文件上传成功").put("declareAttachEntity", declareAttachEntity);
     }
 
     /**

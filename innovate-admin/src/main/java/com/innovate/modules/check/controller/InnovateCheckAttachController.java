@@ -1,11 +1,10 @@
 package com.innovate.modules.check.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
+import com.innovate.common.utils.OSSUtils;
 import com.innovate.modules.declare.entity.DeclareInfoEntity;
 import com.innovate.modules.declare.service.DeclareInfoService;
 import com.innovate.modules.innovate.config.ConfigApi;
@@ -111,7 +110,8 @@ public class InnovateCheckAttachController {
 
         DeclareInfoEntity declareInfoEntity = declareInfoService.queryById(Long.parseLong(declareId));
 
-        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + declareInfoEntity.getDeclareName() + "/"+ RandomUtils.getRandomNums()+"/";
+//        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + declareInfoEntity.getDeclareName() + "/"+ RandomUtils.getRandomNums()+"/";
+        String UPLOAD_FILES_PATH = "check"+ File.separator + Calendar.getInstance().get(Calendar.YEAR) + File.separator+declareInfoEntity.getDeclareName() + "/"+ RandomUtils.getRandomNums()+"/";
 
         if (Objects.isNull(files) || files.isEmpty()) {
             return R.error("文件为空，请重新上传");
@@ -121,15 +121,10 @@ public class InnovateCheckAttachController {
 
         for(MultipartFile file : files){
             String fileName = file.getOriginalFilename();
-            String result = null;
-            try {
-                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (!result.equals("true")) {
-                R.error(result);
-            }
+
+//          result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
+            OSSUtils.upload2OSS(file,UPLOAD_FILES_PATH+fileName);
+            //
             UPLOAD_FILES_PATH += fileName;
             innovateCheckAttachEntity = new InnovateCheckAttachEntity();
             innovateCheckAttachEntity.setAttachPath(UPLOAD_FILES_PATH);

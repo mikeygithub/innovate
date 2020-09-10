@@ -1,5 +1,6 @@
 package com.innovate.modules.finish.controller;
 
+import com.innovate.common.utils.OSSUtils;
 import com.innovate.common.utils.R;
 import com.innovate.modules.finish.entity.FinishAttachEntity;
 import com.innovate.modules.finish.service.FinishAttachService;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +48,8 @@ public class FinishAttachController extends AbstractController {
     @RequiresPermissions("innovate:finish:save")
     public Object uploadFile(@RequestParam("file") List<MultipartFile> files, HttpServletRequest request) {
         String finishName = request.getParameter("finishName");
-        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + finishName + "/"+ RandomUtils.getRandomNums()+"/";
+//        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + finishName + "/"+ RandomUtils.getRandomNums()+"/";
+        String UPLOAD_FILES_PATH = "finish"+File.separator + Calendar.getInstance().get(Calendar.YEAR) + File.separator+finishName + "/"+ RandomUtils.getRandomNums()+"/";
         if (Objects.isNull(files) || files.isEmpty()) {
             return R.error("文件为空，请重新上传");
         }
@@ -54,15 +57,8 @@ public class FinishAttachController extends AbstractController {
         for(MultipartFile file : files){
 
             String fileName = file.getOriginalFilename();
-            String result = null;
-            try {
-                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (!result.equals("true")) {
-                R.error(result);
-            }
+//                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
+            OSSUtils.upload2OSS(file,UPLOAD_FILES_PATH+fileName);
             UPLOAD_FILES_PATH += fileName;
 
             finishAttachEntity = new FinishAttachEntity();

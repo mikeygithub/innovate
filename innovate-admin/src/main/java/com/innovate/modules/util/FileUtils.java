@@ -1,11 +1,14 @@
 package com.innovate.modules.util;
 
+import com.innovate.common.utils.OSSUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -45,8 +48,8 @@ public class FileUtils {
      * @param realPath
      */
     public static void download(final HttpServletResponse response, String realPath) {
-        File file = new File(realPath);
-        if (file.exists()) {
+//        File file = new File(realPath);
+//        if (file.exists()) {
             response.setHeader("content-type", "application/octet-stream");
             response.setContentType("application/octet-stream");
             // 下载文件能正常显示中文
@@ -56,23 +59,34 @@ public class FileUtils {
 //				e.printStackTrace();
 //			}
 
+            File file = OSSUtils.downloadFileFromOSS(realPath);
             // 实现文件下载
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;
             BufferedInputStream bis = null;
             try {
                 fis = new FileInputStream(file);
+//                InputStream inputStream = OSSUtils.downloadFromOSS(realPath);
                 bis = new BufferedInputStream(fis);
                 OutputStream os = response.getOutputStream();
+
                 int i = bis.read(buffer);
                 while (i != -1) {
                     os.write(buffer, 0, i);
                     i = bis.read(buffer);
                 }
+
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//                while (true) {
+//                    String line = reader.readLine();
+//                    if (line == null) break;
+//                    System.out.println("\n" + line);
+//                }
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
     public static String upLoad (String UPLOAD_FILES_PATH, String fileName, MultipartFile file) throws IOException {

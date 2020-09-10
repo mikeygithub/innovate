@@ -1,5 +1,6 @@
 package com.innovate.modules.match.controller;
 
+import com.innovate.common.utils.OSSUtils;
 import com.innovate.common.utils.R;
 import com.innovate.modules.innovate.config.ConfigApi;
 import com.innovate.modules.match.entity.MatchAttachEntity;
@@ -16,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,22 +50,16 @@ public class MatchAttachController extends AbstractController {
     public Object uploadFile(@RequestParam("file") List<MultipartFile> files, HttpServletRequest request) {
         String matchName = request.getParameter("matchName");
         if (matchName==null||matchName.equals(""))matchName="MatchNameISNull";
-        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + matchName + "/" + RandomUtils.getRandomNums() + "/";
+//        String UPLOAD_FILES_PATH = ConfigApi.UPLOAD_URL + matchName + "/" + RandomUtils.getRandomNums() + "/";
+        String UPLOAD_FILES_PATH = "match"+File.separator + Calendar.getInstance().get(Calendar.YEAR) + File.separator+ File.separator + matchName + "/" + RandomUtils.getRandomNums() + "/";
         if (Objects.isNull(files) || files.isEmpty()) {
             return R.error("文件为空，请重新上传");
         }
         MatchAttachEntity matchAttachEntity = null;
         for(MultipartFile file : files){
             String fileName = file.getOriginalFilename();
-            String result = null;
-            try {
-                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (!result.equals("true")) {
-                R.error(result);
-            }
+//                result = FileUtils.upLoad(UPLOAD_FILES_PATH, fileName, file);
+                OSSUtils.upload2OSS(file,UPLOAD_FILES_PATH+fileName);
             UPLOAD_FILES_PATH += fileName;
             matchAttachEntity = new MatchAttachEntity();
             matchAttachEntity.setAttachPath(UPLOAD_FILES_PATH);
