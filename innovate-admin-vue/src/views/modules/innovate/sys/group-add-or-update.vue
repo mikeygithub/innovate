@@ -13,6 +13,7 @@
       </el-form-item>
       <el-form-item label="评委组成员" prop="groupUserList">
         <el-transfer v-model="groupUserList"
+                     filterable
                      :props="{
                         key: 'key',
                         label: 'label'
