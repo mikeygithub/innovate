@@ -137,12 +137,12 @@
         matchTypeList: [
           {value: 1, label: '论文、调研报告'}, {value: 2, label: '视频'},
           {value: 3, label: '设计作品'}, {value: 4, label: '创业计划书'},
-          {value: 5, label: '创新创业实践项目'}
+          {value: 5, label: '创新创业实践项目'}, {value: 6, label: '其它'}
         ],
         matchGroupTypeList: [
           {value: 1, label: '创意组'}, {value: 2, label: '初创组'},
           {value: 3, label: '成长组'}, {value: 4, label: '师生共创组'},
-          {value: 5, label: '"青年红色梦之旅"赛道'}
+          {value: 5, label: '"青年红色梦之旅"赛道'}, {value: 6, label: '其它'}
         ],
         sexList: [
           {value: 1, label: '男'}, {value: 2, label: '女'}

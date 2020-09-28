@@ -99,6 +99,7 @@
           <el-tag v-if="scope.row.matchInfoEntity.matchGroupType === 3" size="small">成长组</el-tag>
           <el-tag v-if="scope.row.matchInfoEntity.matchGroupType === 4" size="small">师生共创组</el-tag>
           <el-tag v-if="scope.row.matchInfoEntity.matchGroupType === 5" size="small">"青年红色梦之旅"赛道</el-tag>
+          <el-tag v-if="scope.row.matchInfoEntity.matchGroupType === 6" size="small">其它</el-tag>
         </template>
       </el-table-column>
       <el-table-column
