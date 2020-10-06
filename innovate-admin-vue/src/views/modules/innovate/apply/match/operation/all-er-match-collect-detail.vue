@@ -13,7 +13,7 @@
           </tr>
           <tr class="contents" align="center">
             <th colspan="12">
-              梧州学院2019“互联网+”大学生创新创业大赛项目汇总表
+              梧州学院“互联网+”大学生创新创业大赛项目汇总表
             </th>
           </tr>
           <!--<tr align='center' style="height: 3.0rem">-->
@@ -53,7 +53,7 @@
         </template>
           <template>
             <tr v-for="(item,index) in matchInfoList" align="center"
-                v-if="item.matchInfoEntity.projectMatchApplyStatus!==0 && item.matchInfoEntity.matchNoPass === 0">
+            >
               <td v-text="index+1"></td>
               <td v-text="item.matchInfoEntity.matchName"></td>
               <td v-text="item.matchInfoEntity.matchTeamName"></td>
