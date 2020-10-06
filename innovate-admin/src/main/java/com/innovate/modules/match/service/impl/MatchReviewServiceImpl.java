@@ -3,6 +3,7 @@ package com.innovate.modules.match.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.innovate.common.utils.DateUtils;
 import com.innovate.common.utils.PageUtils;
 import com.innovate.common.utils.Query;
 import com.innovate.modules.declare.entity.DeclareReviewEntity;
@@ -115,7 +116,7 @@ public class MatchReviewServiceImpl extends ServiceImpl<MatchReviewDao, MatchRev
                     matchReviewEntity = new MatchReviewEntity();
                     matchReviewEntity.setApply(apply);
                     matchReviewEntity.setMatchId(matchId);
-                    matchReviewEntity.setMatchYear(Long.parseLong(matchInfoEntity.getMatchTime().toString().substring(0,3)));
+                    matchReviewEntity.setMatchYear(Long.parseLong(DateUtils.format(matchInfoEntity.getMatchTime()).substring(0,3)));
                     matchReviewEntity.setUserId(innovateReviewGroupUserEntities.get(index).getUserId());
                     tempSet.add(matchReviewEntity);
                 }
