@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.innovate.modules.points.dao.InnovateStudentActivityDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.innovate.modules.points.entity.InnovateStudentActivityEntity" id="innovateStudentActivityMap">
+        <result property="id" column="id"/>
+        <result property="activityName" column="activity_name"/>
+        <result property="activitySite" column="activity_site"/>
+        <result property="activityPoint" column="activity_point"/>
+        <result property="activityTime" column="activity_time"/>
+    </resultMap>
+
+
+</mapper>
