@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.innovate.modules.check.dao.InnovateCheckInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.innovate.modules.check.entity.InnovateCheckInfoEntity" id="innovateCheckInfoMap">
+        <result property="checkId" column="check_id"/>
+        <result property="declareId" column="declare_id"/>
+        <result property="groupId" column="group_id"/>
+        <result property="isUpdate" column="is_update"/>
+        <result property="applyUpdate" column="apply_update"/>
+        <result property="checkNoPass" column="check_no_pass"/>
+        <result property="instituteId" column="institute_id"/>
+        <result property="checkScoreAvg" column="check_score_avg"/>
+        <result property="projectCheckApplyStatus" column="project_check_apply_status"/>
+        <result property="checkTime" column="check_time"/>
+        <result property="isDel" column="is_del"/>
+    </resultMap>
+
+    <select id="queryCountPage" resultType="Integer" parameterType="map">
+
+        select count(*) from innovate_check_info a
+        <!--负责人-->
+        <if test="userId != null and userId != ''">
+            inner join innovate_declare_info b on a.declare_id = b.declare_id
+            and b.project_user_id = #{userId}
+        </if>
+
+        <!--当前评委-->
+        <if test="isReview != null and isReview != '' and reviewUserId != null and reviewUserId != ''">
+            inner join innovate_check_review c on a.check_id = c.check_id
+            and c.user_id = #{reviewUserId}
+            and c.is_del = 0
+        </if>
+
+        where 1 = 1
+
+        <if test="declareId != null and declareId != ''">
+            and a.declare_id = #{declareId}
+        </if>
+
+        <if test="groupId != null and groupId != ''">
+            and a.group_id = #{groupId}
+        </if>
+
+        <if test="isUpdate != null and isUpdate != ''">
+            and a.is_update = #{isUpdate}
+        </if>
+
+        <if test="applyUpdate != null and applyUpdate != ''">
+            and a.apply_update = #{applyUpdate}
+        </if>
+
+        <if test="checkNoPass != null and checkNoPass != ''">
+            and a.check_no_pass = #{checkNoPass}
+        </if>
+
+        <if test="instituteId != null and instituteId != ''">
+            and a.institute_id = #{instituteId}
+        </if>
+
+<!--        <if test="projectCheckApplyStatus != null and projectCheckApplyStatus != ''">-->
+<!--            and a.project_check_apply_status = #{projectCheckApplyStatus}-->
+<!--        </if>-->
+
+        <!--未审批-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 1 and projectCheckApplyStatus != null and projectCheckApplyStatus != ''" >
+            and a.project_check_apply_status = #{projectCheckApplyStatus}
+        </if>
+        <!--已经审批-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 2 and projectCheckApplyStatus != null and projectCheckApplyStatus != ''">
+            and a.project_check_apply_status > #{projectCheckApplyStatus}
+        </if>
+        <!--已经评分-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 3">
+            and a.check_score_avg is not null
+        </if>
+        <!--未完成评分-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 4">
+            and a.check_score_avg is null
+        </if>
+
+        <if test="hasReview != null and hasReview != ''">
+            and a.group_id is not null
+        </if>
+
+        <if test="checkTime != null and checkTime != ''">
+            and a.check_time like CONCAT('%',#{checkTime},'%')
+        </if>
+
+        <!--搜索-->
+        <if test="projectName != null and projectName != ''">
+            and b.declare_name like CONCAT('%',#{projectName},'%')
+        </if>
+
+        <!--未评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 1">
+            and c.score is null
+        </if>
+
+        <!--待他人评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 2">
+            and c.score is not null
+        </if>
+
+        <!--已评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 3">
+            and a.check_score_avg is not null
+        </if>
+
+        <if test="isDel != null and isDel != ''">
+            and a.is_del = #{isDel}
+        </if>
+    </select>
+
+    <select id="queryPage" parameterType="map" resultType="InnovateCheckInfoEntity">
+
+        select * from innovate_check_info a
+
+        <!--负责人-->
+        <if test="userId != null and userId != ''">
+            inner join innovate_declare_info b on a.declare_id = b.declare_id
+            and b.project_user_id = #{userId}
+        </if>
+
+        <!--当前评委-->
+        <if test="isReview != null and isReview != '' and reviewUserId != null and reviewUserId != ''">
+            inner join innovate_check_review c on a.check_id = c.check_id
+            and c.user_id = #{reviewUserId}
+            and c.is_del = 0
+        </if>
+
+        where 1 = 1
+
+        <if test="declareId != null and declareId != ''">
+                and a.declare_id = #{declareId}
+        </if>
+
+        <if test="groupId != null and groupId != ''">
+            and a.group_id = #{groupId}
+        </if>
+
+        <if test="isUpdate != null and isUpdate != ''">
+            and a.is_update = #{isUpdate}
+        </if>
+
+        <if test="applyUpdate != null and applyUpdate != ''">
+            and a.apply_update = #{applyUpdate}
+        </if>
+
+        <if test="checkNoPass != null and checkNoPass != ''">
+            and a.check_no_pass = #{checkNoPass}
+        </if>
+
+        <if test="instituteId != null and instituteId != ''">
+            and a.institute_id = #{instituteId}
+        </if>
+
+<!--        <if test="projectCheckApplyStatus != null and projectCheckApplyStatus != ''">-->
+<!--            and a.project_check_apply_status = #{projectCheckApplyStatus}-->
+<!--        </if>-->
+
+        <!--未审批-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 1 and projectCheckApplyStatus != null and projectCheckApplyStatus != ''" >
+            and a.project_check_apply_status = #{projectCheckApplyStatus}
+        </if>
+        <!--已经审批-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 2 and projectCheckApplyStatus != null and projectCheckApplyStatus != ''">
+            and a.project_check_apply_status > #{projectCheckApplyStatus}
+        </if>
+        <!--已经评分-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 3">
+            and a.check_score_avg is not null
+        </if>
+        <!--未完成评分-->
+        <if test="hasApply != null and hasApply != '' and hasApply == 4">
+            and a.check_score_avg is null
+            and a.group_id is not null
+        </if>
+
+        <if test="hasReview != null and hasReview != ''">
+            and a.group_id is not null
+        </if>
+
+        <if test="checkTime != null and checkTime != ''">
+            and a.check_time like CONCAT('%',#{checkTime},'%')
+        </if>
+
+        <!--搜索-->
+        <if test="projectName != null and projectName != ''">
+            and b.declare_name like CONCAT('%',#{projectName},'%')
+        </if>
+
+        <if test="isDel != null and isDel != ''">
+            and a.is_del = #{isDel}
+        </if>
+        <!--未评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 1">
+            and c.score is null
+        </if>
+        <!--待他人评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 2">
+            and c.score is not null
+            and a.check_score_avg is null
+        </if>
+        <!--已评分-->
+        <if test="hasReview != null and hasReview != '' and hasReview == 3">
+            and a.check_score_avg is not null
+        </if>
+
+        <if test="startPage != null and endPage != null">
+            limit #{startPage}, #{endPage}
+        </if>
+    </select>
+
+</mapper>

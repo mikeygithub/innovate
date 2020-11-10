@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.innovate.modules.check.dao.InnovateCheckRetreatDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.innovate.modules.check.entity.InnovateCheckRetreatEntity" id="innovateCheckRetreatMap">
+        <result property="retreatId" column="retreat_id"/>
+        <result property="checkId" column="check_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="apply" column="apply"/>
+        <result property="applyStatus" column="apply_status"/>
+        <result property="retreatOption" column="retreat_option"/>
+        <result property="hasUpdate" column="has_update"/>
+        <result property="isDel" column="is_del"/>
+    </resultMap>
+
+
+    <select id="queryByParams" resultType="InnovateCheckRetreatEntity" parameterType="map">
+
+        select * from innovate_check_retreat a
+
+        where 1 = 1
+
+        <if test="checkId != null and checkId != ''">
+           and a.check_id = #{checkId}
+        </if>
+
+        <if test="userId != null and userId != ''">
+           and a.user_id = #{userId}
+        </if>
+
+        <if test="apply != null and apply != ''">
+           and a.apply = #{apply}
+        </if>
+
+        <if test="isDel != null and isDel != ''">
+           and a.is_del = #{isDel}
+        </if>
+
+    </select>
+
+
+</mapper>
