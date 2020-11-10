@@ -11,7 +11,11 @@ public class Constant {
 	/** 超级管理员ID */
 	public static final int SUPER_ADMIN = 1;
 
-	/**
+	public static final String QR_CODE_PATH = "points/qr_code_path/";
+
+    public static final String PROTOCOL_IP_PORT = "http://47.106.210.183:8001";
+
+    /**
 	 * 菜单类型
 	 * 
 	 * @author chenshun

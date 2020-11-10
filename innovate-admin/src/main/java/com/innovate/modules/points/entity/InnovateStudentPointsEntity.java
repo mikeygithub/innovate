@@ -50,4 +50,6 @@ public class InnovateStudentPointsEntity implements Serializable {
 	@ExcelIgnore
 	private Date operationTime;
 
+	private Integer activityId;
+
 }

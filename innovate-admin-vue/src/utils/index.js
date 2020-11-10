@@ -47,7 +47,10 @@ export function treeDataTranslate (data, id = 'id', pid = 'parentId') {
   }
   return res
 }
-
+export function getUrlKey (name) {
+  // eslint-disable-next-line no-sparse-arrays
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ''])[1].replace(/\+/g, '%20')) || null
+}
 /**
  * 清除登录信息
  */

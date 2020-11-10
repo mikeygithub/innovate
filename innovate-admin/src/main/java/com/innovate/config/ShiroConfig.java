@@ -58,6 +58,10 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/innovate/sys/institute/all", "anon");
+        filterMap.put("/points/innovatestudentactivity/info/**", "anon");//活动信息
+        filterMap.put("/points/innovatestudentsignin/save", "anon");//活动进厂签到
+        filterMap.put("/points/innovatestudentpoints/save", "anon");//活动离开签到
+        filterMap.put("/points/innovatestudentactivity/image/**", "anon");//活动离开签到
         filterMap.put("/innovate/sys/grade/all", "anon");
         filterMap.put("/innovate/sys/school/all", "anon");
         filterMap.put("/innovate/sys/subject/all", "anon");

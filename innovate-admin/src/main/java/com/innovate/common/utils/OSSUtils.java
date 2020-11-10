@@ -100,6 +100,46 @@ public class OSSUtils {
     }
 
     /**
+     *
+     * @param fileName
+     * @param inputStream
+     * @return
+     */
+    public static String upload2OSS(String fileName,InputStream inputStream){
+
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+        String fileKey = null;
+
+        try {
+
+            if (ossClient.doesBucketExist(bucketName)) {
+                System.out.println("您已经创建Bucket：" + bucketName + "。");
+            } else {
+                System.out.println("您的Bucket不存在，创建Bucket：" + bucketName + "。");
+                ossClient.createBucket(bucketName);
+            }
+
+
+            fileKey = fileName;
+
+            ossClient.putObject(bucketName, fileKey, inputStream);
+
+            System.out.println("Object：" + fileKey + "存入OSS成功。");
+
+        } catch (OSSException oe) {
+            oe.printStackTrace();
+        } catch (ClientException ce) {
+            ce.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ossClient.shutdown();
+        }
+        return fileKey;
+    }
+
+    /**
      * 从OBS下载文件
      *
      * @param objectName
