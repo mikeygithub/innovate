@@ -13,7 +13,10 @@ public class Constant {
 
 	public static final String QR_CODE_PATH = "points/qr_code_path/";
 
-    public static final String PROTOCOL_IP_PORT = "http://47.106.210.183:8001";
+    /**
+     * 二维码请求地址
+     */
+    public static final String PROTOCOL_IP_PORT = "http://47.112.103.217:8001";
 
     /**
 	 * 菜单类型
