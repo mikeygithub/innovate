@@ -101,7 +101,7 @@
       dataFormSubmit () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            this.loadVisible =true
+            this.loadVisible = true
             this.$http({
               url: this.$http.adornUrl(`/points/innovatestudentactivity/${!this.dataForm.id ? 'save' : 'update'}`),
               method: 'post',

@@ -58,7 +58,8 @@
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
-                this.dataForm.activityId = data.innovateStudentActivity.activityId
+                // console.log(JSON.stringify(data))
+                this.dataForm.activityId = data.innovateStudentActivity.id
                 this.dataForm.activityName = data.innovateStudentActivity.activityName
                 this.dataForm.activitySite = data.innovateStudentActivity.activitySite
                 this.dataForm.activityPoint = data.innovateStudentActivity.activityPoint
