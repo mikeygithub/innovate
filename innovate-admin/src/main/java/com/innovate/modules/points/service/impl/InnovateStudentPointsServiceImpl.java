@@ -84,6 +84,7 @@ public class InnovateStudentPointsServiceImpl extends ServiceImpl<InnovateStuden
 
         InnovateStudentPointsEntity innovateStudentPointsEntity = this.selectOne(entityWrapper);
 
+        //不可重复签到
         if (innovateStudentPointsEntity==null){
             innovateStudentPoints.setOperationTime(new Timestamp(System.currentTimeMillis()));
             insert(innovateStudentPoints);

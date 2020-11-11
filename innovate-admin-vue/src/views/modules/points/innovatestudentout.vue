@@ -58,6 +58,7 @@
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
+                this.dataForm.activityId = data.innovateStudentActivity.activityId
                 this.dataForm.activityName = data.innovateStudentActivity.activityName
                 this.dataForm.activitySite = data.innovateStudentActivity.activitySite
                 this.dataForm.activityPoint = data.innovateStudentActivity.activityPoint
@@ -77,6 +78,7 @@
               url: this.$http.adornUrl(`/points/innovatestudentpoints/save`),
               method: 'post',
               data: this.$http.adornData({
+                'activityId': this.dataForm.activityId,
                 'stuNum': this.dataForm.studentId,
                 'points': this.dataForm.activityPoint,
                 'pointsReason': this.dataForm.activityName
