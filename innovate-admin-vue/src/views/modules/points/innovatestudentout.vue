@@ -1,31 +1,61 @@
+<!--<template>-->
+<!--  <div style="margin: 10%">-->
+<!--    <div style="margin-top: 30%">-->
+<!--      <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()">-->
+<!--        <h1 v-text="dataForm.activityName"></h1>-->
+<!--        <h2>活动离开签到</h2>-->
+<!--        <el-form-item  prop="studentId">-->
+<!--          <el-input v-model="dataForm.studentId" placeholder="学生学号"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
+<!--    </div>-->
+<!--    <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>-->
+<!--  </div>-->
+<!--</template>-->
+
 <template>
   <div style="margin: 10%">
-    <div style="margin-top: 30%">
-      <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()">
-        <!--      <el-form-item label="活动id" prop="activityId">-->
-        <!--        <el-input v-model="dataForm.activityId" placeholder="活动id"></el-input>-->
-        <!--      </el-form-item>-->
-        <h1 v-text="dataForm.activityName"></h1>
-        <h2>活动离开签到</h2>
-        <el-form-item  prop="studentId">
-          <el-input v-model="dataForm.studentId" placeholder="学生学号"></el-input>
-        </el-form-item>
-        <el-form-item>
-        </el-form-item>
-      </el-form>
+    <div v-show="inputVisible">
+      <div style="margin-top: 30%">
+        <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()">
+          <h1 v-text="dataForm.activityName"></h1>
+          <h2>活动离开签到</h2>
+          <el-form-item  prop="studentId">
+            <el-input v-model="dataForm.studentId" placeholder="学生学号"></el-input>
+          </el-form-item>
+          <el-form-item>
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>
     </div>
-    <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>
+    <div v-show="!inputVisible" style="margin-top: 30%;">
+      <h1 align="center">
+        <img :src="src">
+      </h1>
+      <h1 align="center">成功</h1>
+    </div>
+    <div style="margin-top: 80%">
+      <h5 align="center">
+        <a style="color: #f0f0f0" href="https://mikeygithub.github.io">Power by Mikey</a>
+      </h5>
+    </div>
   </div>
 </template>
 
 <script>
   import {getUrlKey} from '../../../utils'
+  import finishImage from '@/assets/img/finish.png'
 
   export default {
     data () {
       return {
+        src: finishImage,
         visible: false,
         addLoading: false,
+        inputVisible: true,
         dataForm: {
           id: 0,
           activityId: '',
@@ -93,6 +123,7 @@
                   onClose: () => {
                     this.visible = false
                     this.addLoading = false
+                    this.inputVisible = false
                     this.$emit('refreshDataList')
                   }
                 })

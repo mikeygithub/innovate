@@ -1,31 +1,46 @@
 <template>
   <div style="margin: 10%">
-    <div style="margin-top: 30%">
-      <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()">
-        <!--      <el-form-item label="活动id" prop="activityId">-->
-        <!--        <el-input v-model="dataForm.activityId" placeholder="活动id"></el-input>-->
-        <!--      </el-form-item>-->
-        <h1 v-text="dataForm.activityName"></h1>
-        <h2>活动进场签到</h2>
-        <el-form-item  prop="studentId">
-          <el-input v-model="dataForm.studentId" placeholder="学生学号"></el-input>
-        </el-form-item>
-        <el-form-item>
-        </el-form-item>
-      </el-form>
+    <div v-show="inputVisible">
+      <div style="margin-top: 30%">
+        <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()">
+          <!--      <el-form-item label="活动id" prop="activityId">-->
+          <!--        <el-input v-model="dataForm.activityId" placeholder="活动id"></el-input>-->
+          <!--      </el-form-item>-->
+          <h1 v-text="dataForm.activityName"></h1>
+          <h2>活动进场签到</h2>
+          <el-form-item  prop="studentId">
+            <el-input v-model="dataForm.studentId" placeholder="学生学号"></el-input>
+          </el-form-item>
+          <el-form-item>
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>
     </div>
-    <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>
+    <div v-show="!inputVisible" style="margin-top: 30%;">
+      <h1 align="center">
+      <img :src="src">
+      </h1>
+      <h1 align="center">成功</h1>
+    </div>
+    <div style="margin-top: 80%">
+      <h5 align="center">
+        <a style="color: #f0f0f0" href="https://mikeygithub.github.io">Power by Mikey</a>
+      </h5>
+    </div>
   </div>
 </template>
 
 <script>
   import {getUrlKey} from '../../../utils'
-
+  import finishImage from '@/assets/img/finish.png'
   export default {
     data () {
       return {
+        src: finishImage,
         visible: false,
         addLoading: false,
+        inputVisible: true,
         dataForm: {
           id: 0,
           activityId: '',
@@ -88,6 +103,7 @@
                   type: 'success',
                   duration: 1500,
                   onClose: () => {
+                    this.inputVisible = false
                     this.visible = false
                     this.addLoading = false
                     this.$emit('refreshDataList')
@@ -99,35 +115,6 @@
               }
             })
           }
-        })
-      },
-      open1 () {
-        this.$notify({
-          title: '签到成功',
-          message: '你已经成功签到了',
-          type: 'success'
-        })
-      },
-
-      open2 () {
-        this.$notify({
-          title: '警告',
-          message: '这是一条警告的提示消息',
-          type: 'warning'
-        })
-      },
-
-      open3 () {
-        this.$notify.info({
-          title: '消息',
-          message: '这是一条消息的提示消息'
-        })
-      },
-
-      open4 () {
-        this.$notify.error({
-          title: '错误',
-          message: '这是一条错误的提示消息'
         })
       }
     },
