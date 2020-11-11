@@ -249,8 +249,8 @@
     <div class="site-content__wrapper">
       <div class="site-content">
         <div class="brand-info">
-          <h2 class="brand-info__text">创新创业管理信息系统</h2>
-          <p class="brand-info__intro">双创管理系统</p>
+          <h2 class="brand-info__text">创新创业教育学院数字化信息化管理平台</h2>
+<!--          <p class="brand-info__intro">双创管理系统</p>-->
         </div>
         <div class="login-main">
           <h3 class="login-title">登录</h3>
