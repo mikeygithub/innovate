@@ -2,7 +2,7 @@
   <nav class="site-navbar" :class="'site-navbar--' + navbarLayoutType">
     <div class="site-navbar__header">
       <h1 class="site-navbar__brand" @click="$router.push({ name: 'home' })">
-        <a class="site-navbar__brand-lg" href="javascript:;">创新创业管理信息系统</a>
+        <a class="site-navbar__brand-lg" href="javascript:;">双创数字化信息化管理平台</a>
         <a class="site-navbar__brand-mini" href="javascript:;">双创</a>
       </h1>
     </div>
@@ -281,3 +281,8 @@
     }
   }
 </script>
+<style scoped>
+  .site-navbar__brand-lg {
+    font-size: 18px !important;
+  }
+</style>
