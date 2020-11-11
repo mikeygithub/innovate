@@ -80,7 +80,7 @@ public class InnovateStudentPointsServiceImpl extends ServiceImpl<InnovateStuden
         EntityWrapper<InnovateStudentPointsEntity> entityWrapper = new EntityWrapper<>();
 
         entityWrapper.eq("activity_id",innovateStudentPoints.getActivityId());
-        entityWrapper.eq("student_id",innovateStudentPoints.getStuNum());
+        entityWrapper.eq("stu_num",innovateStudentPoints.getStuNum());
 
         InnovateStudentPointsEntity innovateStudentPointsEntity = this.selectOne(entityWrapper);
 

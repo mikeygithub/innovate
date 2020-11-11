@@ -14,7 +14,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <el-button style="width: 100%" type="primary" @click="dataFormSubmit()">确定签到</el-button>
+    <el-button style="width: 100%" type="primary" @click="dataFormSubmit()" :loading="addLoading">确定签到</el-button>
   </div>
 </template>
 
@@ -25,6 +25,7 @@
     data () {
       return {
         visible: false,
+        addLoading: false,
         dataForm: {
           id: 0,
           activityId: '',
@@ -71,6 +72,7 @@
       dataFormSubmit () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
+            this.addLoading = true
             this.$http({
               url: this.$http.adornUrl(`/points/innovatestudentsignin/save`),
               method: 'post',
@@ -87,11 +89,13 @@
                   duration: 1500,
                   onClose: () => {
                     this.visible = false
+                    this.addLoading = false
                     this.$emit('refreshDataList')
                   }
                 })
               } else {
                 this.$message.error(data.msg)
+                this.addLoading = false
               }
             })
           }

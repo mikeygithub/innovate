@@ -36,7 +36,7 @@
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button type="primary" @click="dataFormSubmit()" :loading="loadVisible">确定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -46,6 +46,7 @@
     data () {
       return {
         visible: false,
+        loadVisible: false,
         dataForm: {
           id: 0,
           activityName: '',
@@ -100,6 +101,7 @@
       dataFormSubmit () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
+            this.loadVisible =true
             this.$http({
               url: this.$http.adornUrl(`/points/innovatestudentactivity/${!this.dataForm.id ? 'save' : 'update'}`),
               method: 'post',
@@ -119,11 +121,13 @@
                   duration: 1500,
                   onClose: () => {
                     this.visible = false
+                    this.addLoading = false
                     this.$emit('refreshDataList')
                   }
                 })
               } else {
                 this.$message.error(data.msg)
+                this.loadVisible = false
               }
             })
           }
