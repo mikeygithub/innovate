@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.innovate.common.utils.R;
+import com.innovate.modules.points.service.InnovateStudentActivityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -20,12 +22,20 @@ import com.innovate.modules.points.service.InnovateStudentSignInService;
 @Service("innovateStudentSignInService")
 public class InnovateStudentSignInServiceImpl extends ServiceImpl<InnovateStudentSignInDao, InnovateStudentSignInEntity> implements InnovateStudentSignInService {
 
+    @Autowired
+    private InnovateStudentActivityService innovateStudentActivityService;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         Page<InnovateStudentSignInEntity> page = this.selectPage(
                 new Query<InnovateStudentSignInEntity>(params).getPage(),
                 new EntityWrapper<>()
         );
+
+        //查询对应的活动
+        page.getRecords().forEach(v->{
+            v.setInnovateStudentActivityEntity(innovateStudentActivityService.selectById(v.getActivityId()));
+        });
 
         return new PageUtils(page);
     }

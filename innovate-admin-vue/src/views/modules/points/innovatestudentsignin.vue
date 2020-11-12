@@ -32,7 +32,12 @@
         prop="activityId"
         header-align="center"
         align="center"
-        label="活动id">
+        label="活动名称">
+        <template slot-scope="scope">
+          <el-tag type="small">
+            <span v-text="scope.row.innovateStudentActivityEntity.activityName"></span>
+          </el-tag>
+        </template>
       </el-table-column>
       <el-table-column
         prop="studentId"
