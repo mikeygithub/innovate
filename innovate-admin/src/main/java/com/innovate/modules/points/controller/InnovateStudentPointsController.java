@@ -70,9 +70,9 @@ public class InnovateStudentPointsController {
 //    @RequiresPermissions("points:innovatestudentpoints:save")
     public R save(@RequestBody InnovateStudentPointsEntity innovateStudentPoints){
         //生成二维码
-		R r = innovateStudentPointsService.insertAndCheck(innovateStudentPoints);
+		innovateStudentPointsService.insert(innovateStudentPoints);
 
-        return r;
+        return R.ok();
     }
 
     /**

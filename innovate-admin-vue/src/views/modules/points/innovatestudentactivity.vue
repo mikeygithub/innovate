@@ -83,12 +83,12 @@
         fixed="right"
         header-align="center"
         align="center"
-        width="200"
+        width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="downloadQRCodeHandle(scope.row.activitySignQr,0)">下载签到二维码</el-button>
+          <el-button type="text" size="small" @click="downloadQRCodeHandle(scope.row.activitySignQr,0)">签到二维码</el-button>
           <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button type="text" size="small" @click="downloadQRCodeHandle(scope.row.activityPointQr,1)">下载离场二维码</el-button>
+          <el-button type="text" size="small" @click="downloadQRCodeHandle(scope.row.activityPointQr,1)">离场二维码</el-button>
           <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>

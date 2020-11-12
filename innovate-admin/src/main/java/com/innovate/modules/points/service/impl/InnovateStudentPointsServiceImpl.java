@@ -73,7 +73,7 @@ public class InnovateStudentPointsServiceImpl extends ServiceImpl<InnovateStuden
         return innovateStudentPointsEntities.stream().mapToInt(value -> value.getPoints()).sum();
     }
 
-    @Override
+
     public R insertAndCheck(InnovateStudentPointsEntity innovateStudentPoints) {
         //判断是否已经签到
 

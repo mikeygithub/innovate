@@ -217,8 +217,8 @@ public class DeclareInfoModelServiceImpl implements DeclareInfoModelService {
         EntityWrapper entityWrapper = new EntityWrapper();
 
         //用户id
-        Object userId = params.get("userId");
-        entityWrapper.eq("project_user_id",userId);
+//        Object userId = params.get("userId");
+//        entityWrapper.eq("project_user_id",userId);
         //评分通过
         Object status = params.get("status");
         entityWrapper.ge("project_audit_apply_status",status);

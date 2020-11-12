@@ -108,7 +108,7 @@ public class FinishReviewServiceImpl extends ServiceImpl<FinishReviewDao, Finish
         List<InnovateReviewGroupUserEntity> innovateReviewGroupUserEntities = innovateReviewGroupUserService.queryAllGroupUser(groupId);
         finishReviewService.remove(params);
         FinishReviewEntity finishReviewEntity = null;
-        Set<FinishInfoEntity> tempSet = new HashSet<FinishInfoEntity>();
+        Set<FinishReviewEntity> tempSet = new HashSet<FinishReviewEntity>();
         for (int index = 0; index < innovateReviewGroupUserEntities.size(); index++) {
             for (int indexJ = 0; indexJ < finishTeacherEntities.size(); indexJ++) {
                 if (innovateReviewGroupUserEntities.get(index).getUserId() != finishTeacherEntities.get(indexJ).getUserId()) {
@@ -119,11 +119,11 @@ public class FinishReviewServiceImpl extends ServiceImpl<FinishReviewDao, Finish
                     finishReviewEntity.setUserId(innovateReviewGroupUserEntities.get(index).getUserId());
                     //评委重复问题
 //                    finishReviewService.insert(finishReviewEntity);
-                    tempSet.add(finishInfoEntity);
+                    tempSet.add(finishReviewEntity);
                 }
             }
         }
-        finishReviewService.insertBatch(new ArrayList(tempSet));
+        baseMapper.insertBatch(new ArrayList(tempSet));
         if (reApply.equals("false")) {
             //更新状态
             finishApplyService.apply(params);

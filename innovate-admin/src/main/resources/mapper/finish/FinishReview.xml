@@ -68,4 +68,12 @@
         </where>
     </select>
 
+    <insert id="insertBatch" parameterType = "java.util.List">
+        INSERT INTO innovate_finish_review (apply, finish_id, user_id, finish_year)
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.apply}, #{item.finishId},#{item.userId}, #{item.finishYear})
+        </foreach>
+    </insert>
+
 </mapper>

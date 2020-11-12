@@ -2,7 +2,6 @@ package com.innovate.modules.points.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.innovate.common.utils.PageUtils;
-import com.innovate.common.utils.R;
 import com.innovate.modules.points.entity.InnovateStudentPointsEntity;
 
 import java.util.Map;
@@ -19,7 +18,5 @@ public interface InnovateStudentPointsService extends IService<InnovateStudentPo
     PageUtils queryPage(Map<String, Object> params);
 
     Integer queryPointByParams(Map<String, Object> params);
-
-    R insertAndCheck(InnovateStudentPointsEntity innovateStudentPoints);
 }
 

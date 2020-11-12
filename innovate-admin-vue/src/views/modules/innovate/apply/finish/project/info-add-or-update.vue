@@ -7,10 +7,10 @@
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-row :gutter="20">
-      <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="16rem" style="width: 94%; margin: 0 auto">
+      <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px" >
         <el-col :span="12">
           <el-form-item label="项目名称" prop="declareId">
-            <el-select v-model="dataForm.declareId"  placeholder="请选择">
+            <el-select v-model="dataForm.declareId"  placeholder="请选择" filterable  style="width: 80%">
               <el-option v-for="item in finishList" :key="item.declareName" :label="item.declareName" :value="item.declareId"></el-option>
             </el-select>
           </el-form-item>
@@ -289,8 +289,9 @@
             url: this.$http.adornUrl(`/innovate/declare/info/canfinish`),
             method: 'get',
             params: this.$http.adornParams({
-              'userId': this.$store.state.user.id,
-              'status': 4
+              // 'userId': this.$store.state.user.id,
+              // 'userId': 464,
+              'status': 0
             })
           }).then(({data}) => {
             if (data && data.code === 0) {
