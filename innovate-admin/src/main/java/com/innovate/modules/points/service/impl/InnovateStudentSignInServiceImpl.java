@@ -52,7 +52,7 @@ public class InnovateStudentSignInServiceImpl extends ServiceImpl<InnovateStuden
 
         InnovateStudentSignInEntity innovateStudentSignInEntity = this.selectOne(entityWrapper);
 
-        if (innovateStudentSignIn==null){
+        if (innovateStudentSignInEntity==null){
             innovateStudentSignIn.setSignInTime(new Timestamp(System.currentTimeMillis()));
             insert(innovateStudentSignIn);
             return R.ok();
