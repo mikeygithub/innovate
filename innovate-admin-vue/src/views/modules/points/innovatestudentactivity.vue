@@ -47,7 +47,7 @@
         prop="activityPoint"
         header-align="center"
         align="center"
-        label="活动学分">
+        label="活动积分">
       </el-table-column>
       <el-table-column
         prop="activityTime"

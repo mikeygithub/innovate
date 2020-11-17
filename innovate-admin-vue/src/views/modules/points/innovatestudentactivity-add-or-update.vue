@@ -10,8 +10,8 @@
     <el-form-item label="活动地点" prop="activitySite">
       <el-input v-model="dataForm.activitySite" placeholder="活动地点"></el-input>
     </el-form-item>
-    <el-form-item label="活动学分" prop="activityPoint">
-      <el-input v-model="dataForm.activityPoint" placeholder="活动学分"></el-input>
+    <el-form-item label="活动积分" prop="activityPoint">
+      <el-input v-model="dataForm.activityPoint" placeholder="活动积分"></el-input>
     </el-form-item>
     <el-form-item label="活动时间" prop="activityTime">
       <div class="block">
@@ -63,7 +63,7 @@
             { required: true, message: '活动地点不能为空', trigger: 'blur' }
           ],
           activityPoint: [
-            { required: true, message: '活动学分不能为空', trigger: 'blur' }
+            { required: true, message: '活动积分不能为空', trigger: 'blur' }
           ],
           activityTime: [
             { required: true, message: '活动时间不能为空', trigger: 'blur' }

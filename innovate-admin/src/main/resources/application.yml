@@ -90,3 +90,5 @@ debug: false
 jasypt:
   encryptor:
     password: panda
+qrcode:
+  base-url:
