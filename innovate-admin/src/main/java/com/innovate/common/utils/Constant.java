@@ -2,7 +2,7 @@ package com.innovate.common.utils;
 
 /**
  * 常量
- * 
+ *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2016年11月15日 下午1:23:52
@@ -13,14 +13,11 @@ public class Constant {
 
 	public static final String QR_CODE_PATH = "points/qr_code_path/";
 
-    /**
-     * 二维码请求地址
-     */
-    public static final String PROTOCOL_IP_PORT = "http://47.112.103.217:8001";
+    public static final String PROTOCOL_IP_PORT = "http://cxcy.gxxiaoxiong.com:8001";
 
     /**
 	 * 菜单类型
-	 * 
+	 *
 	 * @author chenshun
 	 * @email sunlightcs@gmail.com
 	 * @date 2016年11月15日 下午1:24:29
@@ -49,10 +46,10 @@ public class Constant {
             return value;
         }
     }
-    
+
     /**
      * 定时任务状态
-     * 
+     *
      * @author chenshun
      * @email sunlightcs@gmail.com
      * @date 2016年12月3日 上午12:07:22
@@ -72,7 +69,7 @@ public class Constant {
         ScheduleStatus(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
