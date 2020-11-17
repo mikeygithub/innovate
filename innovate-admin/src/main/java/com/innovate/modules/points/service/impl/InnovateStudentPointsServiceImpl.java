@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.innovate.common.utils.R;
 import com.innovate.modules.innovate.entity.UserPersonInfoEntity;
 import com.innovate.modules.innovate.service.UserPerInfoService;
+import com.innovate.modules.sys.entity.SysUserEntity;
+import com.innovate.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,8 @@ public class InnovateStudentPointsServiceImpl extends ServiceImpl<InnovateStuden
 
     @Autowired
     private UserPerInfoService userPerInfoService;
-
+    @Autowired
+    private SysUserService sysUserService;
     /**
      * 查询列表
      * @param params
@@ -75,6 +78,12 @@ public class InnovateStudentPointsServiceImpl extends ServiceImpl<InnovateStuden
 
 
     public R insertAndCheck(InnovateStudentPointsEntity innovateStudentPoints) {
+        //判断是否存在该学生学号
+        SysUserEntity sysUserEntity = sysUserService.queryByUserName(innovateStudentPoints.getStuNum());
+        if (sysUserEntity == null) {
+            return R.error("该学号不存在");
+        }
+
         //判断是否已经签到
 
         EntityWrapper<InnovateStudentPointsEntity> entityWrapper = new EntityWrapper<>();

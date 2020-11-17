@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.innovate.common.utils.R;
 import com.innovate.modules.points.service.InnovateStudentActivityService;
+import com.innovate.modules.sys.entity.SysUserEntity;
+import com.innovate.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,8 @@ public class InnovateStudentSignInServiceImpl extends ServiceImpl<InnovateStuden
 
     @Autowired
     private InnovateStudentActivityService innovateStudentActivityService;
-
+    @Autowired
+    private SysUserService sysUserService;
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         Page<InnovateStudentSignInEntity> page = this.selectPage(
@@ -42,6 +45,12 @@ public class InnovateStudentSignInServiceImpl extends ServiceImpl<InnovateStuden
 
     @Override
     public R saveAndCheck(InnovateStudentSignInEntity innovateStudentSignIn) {
+
+        //判断是否存在该学生学号
+        SysUserEntity sysUserEntity = sysUserService.queryByUserName(innovateStudentSignIn.getStudentId().toString());
+        if (sysUserEntity == null) {
+            return R.error("该学号不存在");
+        }
 
         //判断是否已经签到
 
