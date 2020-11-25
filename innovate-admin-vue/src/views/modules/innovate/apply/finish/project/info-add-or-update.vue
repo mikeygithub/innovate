@@ -6,11 +6,11 @@
     :title="!dataForm.id ? '新增结题信息' : '修改结题信息'"
     :close-on-click-modal="false"
     :visible.sync="visible">
-    <el-row :gutter="20">
+    <el-row :gutter="15">
       <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px" >
         <el-col :span="12">
-          <el-form-item label="项目名称" prop="declareId">
-            <el-select v-model="dataForm.declareId"  placeholder="请选择" filterable  style="width: 80%">
+          <el-form-item label="项目名称" prop="declareId" label-width="">
+            <el-select v-model="dataForm.declareId"  placeholder="请选择" filterable  style="width: 100%">
               <el-option v-for="item in finishList" :key="item.declareName" :label="item.declareName" :value="item.declareId"></el-option>
             </el-select>
           </el-form-item>
@@ -291,7 +291,7 @@
             params: this.$http.adornParams({
               // 'userId': this.$store.state.user.id,
               // 'userId': 464,
-              'status': 0
+              'status': 5
             })
           }).then(({data}) => {
             if (data && data.code === 0) {
