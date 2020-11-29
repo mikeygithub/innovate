@@ -67,7 +67,7 @@
             </if>
         </where>
     </select>
-
+   <!-- 批量插入-->
     <insert id="insertBatch" parameterType = "java.util.List">
         INSERT INTO innovate_finish_review (apply, finish_id, user_id, finish_year)
         VALUES

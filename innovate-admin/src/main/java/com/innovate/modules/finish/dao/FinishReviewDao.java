@@ -31,6 +31,6 @@ public interface FinishReviewDao extends BaseMapper<FinishReviewEntity> {
     Double queryScoreAvg(Map<String, Object> params);
     //查询分数
     FinishReviewEntity queryScore(Map<String, Object> params);
-    //批量插入
+    //批量插入 评委
     Integer insertBatch(List<FinishReviewEntity> list);
 }
