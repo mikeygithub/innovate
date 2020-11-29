@@ -123,6 +123,7 @@ public class FinishReviewServiceImpl extends ServiceImpl<FinishReviewDao, Finish
                 }
             }
         }
+        // 批量插入
         baseMapper.insertBatch(new ArrayList(tempSet));
         if (reApply.equals("false")) {
             //更新状态
