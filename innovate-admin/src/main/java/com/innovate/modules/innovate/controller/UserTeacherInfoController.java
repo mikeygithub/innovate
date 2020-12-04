@@ -49,7 +49,6 @@ public class UserTeacherInfoController extends AbstractController {
      * 所有教师用户信息
      */
     @GetMapping("/all")
-    @RequiresPermissions("innovate:project:info")
     public R all(){
         List<UserTeacherInfoEntity> userTeacherInfoEntities = userTeacherInfoService.queryAllTeacherInfo();
         return R.ok()

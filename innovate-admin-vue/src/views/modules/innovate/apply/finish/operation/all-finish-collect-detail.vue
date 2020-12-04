@@ -30,6 +30,7 @@
           <th colspan="1">立项年份</th>
           <th colspan="2">项目负责人姓名</th>
           <th colspan="2">项目负责人学号</th>
+          <th colspan="2">联系电话</th>
           <th colspan="2">申报类型</th>
           <th colspan="2">申报时间</th>
           <!--<th colspan="2">参与学生人数</th>-->
@@ -50,7 +51,7 @@
         </template>
         <template>
           <tr v-for="(item,index) in finishInfoList" align="center">
-              <!--v-if="item.finishInfoEntity.projectFinishApplyStatus !==0 && item.finishInfoEntity.finishNoPass === 0">-->
+            <!--v-if="item.finishInfoEntity.projectFinishApplyStatus !==0 && item.finishInfoEntity.finishNoPass === 0">-->
             <!--TODO:整改-->
             <td v-text="index+1"></td>
             <td colspan="3" v-text="item.finishInfoEntity.finishName"></td>
@@ -67,6 +68,11 @@
                 </span>
             </td>
             <td colspan="2">
+                <span v-for="user in item.userPersonInfoEntities" >
+                  <span v-text="user.sysUserEntity.mobile"></span>
+                </span>
+            </td>
+            <td colspan="2">
               <span v-for="temp in finishTypeList" v-if="temp.value === item.finishInfoEntity.finishType" v-text="temp.label"></span>
             </td>
             <td colspan="2">
@@ -74,17 +80,17 @@
             </td>
             <!--<td colspan="2" v-text="item.finishStaffInfoEntities.length+1"></td>-->
             <!--<td colspan="3">-->
-              <!--<span v-for="staff in item.finishStaffInfoEntities" v-text="staff.staffName+'/'+staff.staffStuNo+','" align="center"></span>-->
+            <!--<span v-for="staff in item.finishStaffInfoEntities" v-text="staff.staffName+'/'+staff.staffStuNo+','" align="center"></span>-->
             <!--</td>-->
 
             <!--指导老师-->
             <!--<td colspan="2">-->
-                <!--<span v-for="teacher in userTeacherInfoEntities">-->
-                  <!--<span v-for="teacher2 in item.finishTeacherEntities"-->
-                        <!--v-if="teacher.userId === teacher2.userId"-->
-                        <!--v-text="teacher.sysUserEntity.name+'  '" align="center">-->
-                  <!--</span>-->
-                <!--</span>-->
+            <!--<span v-for="teacher in userTeacherInfoEntities">-->
+            <!--<span v-for="teacher2 in item.finishTeacherEntities"-->
+            <!--v-if="teacher.userId === teacher2.userId"-->
+            <!--v-text="teacher.sysUserEntity.name+'  '" align="center">-->
+            <!--</span>-->
+            <!--</span>-->
             <!--</td>-->
             <td colspan="2">
                 <span v-for="finishTeacher in item.finishTeacherEntities">
@@ -94,11 +100,11 @@
             <!--职称-->
             <td colspan="2">
               <!--<span v-for="teacher in userTeacherInfoEntities">-->
-                  <!--<span v-for="teacher2 in item.finishTeacherEntities"-->
-                        <!--v-if="teacher.userId === teacher2.userId">-->
-                     <!--<span v-for="temp in teacherTitleList" v-if="temp.titleId === teacher.teacherTitle" v-text="temp.titleName"></span>-->
-                  <!--</span>-->
-                <!--</span>-->
+              <!--<span v-for="teacher2 in item.finishTeacherEntities"-->
+              <!--v-if="teacher.userId === teacher2.userId">-->
+              <!--<span v-for="temp in teacherTitleList" v-if="temp.titleId === teacher.teacherTitle" v-text="temp.titleName"></span>-->
+              <!--</span>-->
+              <!--</span>-->
 
               <span v-for="finishTeacher in item.finishTeacherEntities">
                   <span v-for="allT in userTeacherInfoEntities" v-if="finishTeacher.userId === allT.userId" align="center">
@@ -106,11 +112,11 @@
                   </span>
                 </span>
             </td>
-          <td colspan="2">
-            <!--<span v-text="item.finishInfoEntity.finishScoreAvg"></span>-->
-            <!--二级学院-->
-            <!--<span :key="index" v-for="inst in instituteList" v-if="item.userPersonInfoEntities[0].sysUserEntity.instituteId === inst.instituteId" v-text="inst.instituteName"></span>          </td>-->
-            <span v-if="item.userPersonInfoEntities!==null&&item.userPersonInfoEntities.length!==0" :key="index" v-for="inst in instituteList">
+            <td colspan="2">
+              <!--<span v-text="item.finishInfoEntity.finishScoreAvg"></span>-->
+              <!--二级学院-->
+              <!--<span :key="index" v-for="inst in instituteList" v-if="item.userPersonInfoEntities[0].sysUserEntity.instituteId === inst.instituteId" v-text="inst.instituteName"></span>          </td>-->
+              <span v-if="item.userPersonInfoEntities!==null&&item.userPersonInfoEntities.length!==0" :key="index" v-for="inst in instituteList">
               <span v-if="item.userPersonInfoEntities[0].sysUserEntity.instituteId === inst.instituteId" v-text="inst.instituteName"></span>
             </span></td>
             <td><span v-text="item.finishInfoEntity.finishScoreAvg!=null?item.finishInfoEntity.finishScoreAvg:'未完成评分'"></span></td>
@@ -201,6 +207,8 @@
     },
     methods: {
       init (instituteId, time) {
+        console.log(this.$store.state.userTeacherInfoEntities)
+        console.log(this.$store.state.user.title)
         this.visible = true
         this.dataListLoading = true
         // this.dataForm.id = id || 0
